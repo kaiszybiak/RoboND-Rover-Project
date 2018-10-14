@@ -6,7 +6,7 @@ To locate passable areas, the captured image is processed with a threshold filte
 
 
 #### 1. Populate the `process_image()` function with the appropriate analysis steps to map pixels identifying navigable terrain, obstacles and rock samples into a worldmap.  Run `process_image()` on your test data using the `moviepy` functions provided to create video output of your result.
-For the `process_image()` function I added the remaining steps to convert the filtered image to rover coordinates and convert those coordinates to world coordinates based on the rover's position. I then use these coordinates to update the world map.
+For the `process_image()` function I first added functionality in order to filtering out the navigable terrain, obstacles, and samples and then added the remaining steps to convert the filtered image to rover coordinates and convert those coordinates to world coordinates based on the rover's position. I then use these coordinates to update the world map.
 
 ### Autonomous Navigation and Mapping
 
