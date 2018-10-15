@@ -77,10 +77,10 @@ def perspect_transform(img, src, dst):
     mask = cv2.warpPerspective(np.ones_like(img[:,:,0]), M, (img.shape[1], img.shape[0]))
     return warped, mask
 
-def find_rocks(img, levels=(110,110,50)):
-    rockpix = ((img[:,:,0] > levels[0]) \
-                & (img[:,:,1] > levels[1]) \
-                & (img[:,:,2] < levels[2]))
+def rock_sample_detection(img, thresh=(110,110,50)):
+    rockpix = ((img[:,:,0] > thresh[0]) \
+                & (img[:,:,1] > thresh[1]) \
+                & (img[:,:,2] < thresh[2]))
 
     color_select = np.zeros_like(img[:,:,0])
     color_select[rockpix] = 1
@@ -122,7 +122,7 @@ def perception_step(Rover):
 
     Rover.nav_angles = angles
 
-    rock_map = find_rocks(warped, levels=(110, 110, 50))
+    rock_map = rock_sample_detection(warped, thresh=(110, 110, 50))
     if rock_map.any():
         rock_x, rock_y = rover_coords(rock_map)
 
